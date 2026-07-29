@@ -24,9 +24,19 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             max-width: 85%;
             width: 350px;
+            position: relative;
         }
         h1 { color: #ff4d6d; margin-bottom: 10px; }
         p { font-size: 1.1em; line-height: 1.5; }
+        
+        /* Style du formulaire et boutons */
+        .btn-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            position: relative;
+            height: 50px;
+        }
         .btn {
             background-color: #ff4d6d;
             color: white;
@@ -35,38 +45,60 @@
             font-size: 1em;
             border-radius: 25px;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+        #btn-non {
+            background-color: #777;
+            position: absolute;
+        }
+        textarea {
+            width: 90%;
+            height: 60px;
             margin-top: 15px;
-            transition: transform 0.2s;
+            border-radius: 10px;
+            border: 1px solid #ffb3c6;
+            padding: 10px;
+            font-family: inherit;
+            resize: none;
         }
-        .btn:active { transform: scale(0.95); }
-        #message-cache {
-            display: none;
-            margin-top: 20px;
-            color: #ff758f;
-            font-weight: bold;
-            font-size: 1.2em;
-            animation: fadeIn 1s;
-        }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
     <div class="card">
         <h1>Pour ma chérie ❤️</h1>
-        <p>Chaque jour passé avec toi est un cadeau. J'ai créé cette petite page juste pour te décrocher un sourire.</p>
-        <button class="btn" onclick="montrerMessage()">Clique ici</button>
-        <div id="message-cache">Je t'aime plus que tout ! ✨</div>
+        <p>Est-ce que tu m'aimes autant que je t'aime ?</p>
+        
+        <!-- Formulaire de réponse -->
+        <form action="https://web3forms.com" method="POST" id="form-reponse">
+            <!-- Remplacer VOTRE_CLE_ICI par la clé reçue sur web3forms.com -->
+            <input type="hidden" name="access_key" value="e3a458f8-053d-44fc-a762-a8220da46356>
+            <input type="hidden" name="subject" value="Nouvelle réponse de ta copine ! ❤️">
+            
+            <div class="btn-container">
+                <button type="submit" name="Reponse" value="OUI !" class="btn" id="btn-oui">OUI !</button>
+                <button type="button" class="btn" id="btn-non" onmouseover="fuiteBouton()" onclick="fuiteBouton()">NON</button>
+            </div>
+
+            <textarea name="Petit_mot" placeholder="Laisse-moi un petit mot doux ici..."></textarea>
+        </form>
     </div>
 
     <script>
-        function montrerMessage() {
-            const msg = document.getElementById('message-cache');
-            msg.style.display = 'block';
+        // Fonction amusante : le bouton NON s'enfuit quand on l'approche ou le touche sur iPhone
+        function fuiteBouton() {
+            const btnNon = document.getElementById('btn-non');
+            // Calcule une position aléatoire dans la carte
+            const x = Math.random() * 150 - 75; 
+            const y = Math.random() * 150 - 75;
             
-            // Petit effet de vibration sur iPhone si cliqué
-            if (navigator.vibrate) { navigator.vibrate(100); }
+            btnNon.style.transform = `translate(${x}px, ${y}px)`;
         }
+
+        // Message de confirmation après envoi
+        document.getElementById('form-reponse').addEventListener('submit', function() {
+            alert("Merci mon amour ! Ta réponse m'a bien été envoyée. ❤️");
+        });
     </script>
 
 </body>
