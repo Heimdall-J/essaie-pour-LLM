@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pour Toi ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffe5ec, #ffb3c6);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #4a4a4a;
+            text-align: center;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            max-width: 85%;
+            width: 350px;
+        }
+        h1 { color: #ff4d6d; margin-bottom: 10px; }
+        p { font-size: 1.1em; line-height: 1.5; }
+        .btn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.2s;
+        }
+        .btn:active { transform: scale(0.95); }
+        #message-cache {
+            display: none;
+            margin-top: 20px;
+            color: #ff758f;
+            font-weight: bold;
+            font-size: 1.2em;
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Pour ma chérie ❤️</h1>
+        <p>Chaque jour passé avec toi est un cadeau. J'ai créé cette petite page juste pour te décrocher un sourire.</p>
+        <button class="btn" onclick="montrerMessage()">Clique ici</button>
+        <div id="message-cache">Je t'aime plus que tout ! ✨</div>
+    </div>
+
+    <script>
+        function montrerMessage() {
+            const msg = document.getElementById('message-cache');
+            msg.style.display = 'block';
+            
+            // Petit effet de vibration sur iPhone si cliqué
+            if (navigator.vibrate) { navigator.vibrate(100); }
+        }
+    </script>
+
+</body>
+</html>
